@@ -1,0 +1,240 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: var(--space-md) var(--margin-mobile);
+  user-select: none;
+}
+
+.statusLog {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  color: var(--on-surface-variant);
+  margin-bottom: var(--space-md);
+  opacity: 0.8;
+}
+
+.terminalBox {
+  background-color: var(--surface-container-low);
+  box-shadow: 0 0 1.5rem rgba(0,255,102,0.06);
+  padding: var(--space-md);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.headerArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-xs);
+}
+
+.title {
+  color: var(--primary-container);
+  font-size: 1.6rem;
+  letter-spacing: 0em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.titleHighlight {
+  color: var(--secondary-fixed);
+}
+
+.titleSeparator {
+  opacity: 0.4;
+}
+
+.titleAccess {
+  color: var(--on-surface);
+}
+
+.lockIcon {
+  color: var(--primary-container);
+  font-size: 1.8rem;
+}
+
+.tabsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xs);
+  padding: 0.4rem;
+  background-color: var(--surface-container-lowest);
+}
+
+.tab {
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.tabActive {
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+  box-shadow: 0 0 0.8rem rgba(0,255,102,0.35);
+}
+
+.tabInactive {
+  color: var(--on-surface-variant);
+}
+.tabInactive:hover {
+  color: var(--primary-container);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.label {
+  font-size: 1rem;
+  color: var(--primary-container);
+  letter-spacing: 0.12em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+}
+
+.cursorBlock {
+  width: 0.6rem;
+  height: 1.2rem;
+  background-color: var(--primary-container);
+  display: inline-block;
+}
+
+.cursorBlockDim {
+  opacity: 0.4;
+}
+
+.inputWrapper {
+  position: relative;
+  background-color: var(--surface-container-lowest);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-sm);
+  height: 2.75rem;
+}
+
+.inputWrapper:focus-within {
+  box-shadow: 0 0 0.8rem rgba(0,255,102,0.25);
+}
+
+.input {
+  width: 100%;
+  background: transparent;
+  color: var(--primary-container);
+  font-size: 1.3rem;
+  border: none;
+  outline: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  caret-color: var(--primary-container);
+}
+
+.input::placeholder {
+  color: var(--outline-variant);
+}
+
+.eyeBtn {
+  color: var(--on-surface-variant);
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.eyeBtn:hover {
+  color: var(--primary-container);
+}
+.eyeBtn span {
+  font-size: 1.8rem;
+}
+
+.submitBtn {
+  margin-top: var(--space-xs);
+  height: 3rem;
+  width: 100%;
+  background-color: var(--surface-container);
+  color: var(--primary-container);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  box-shadow: 0 0 1rem rgba(0,255,102,0.15);
+  transition: all 0.2s;
+}
+
+.submitBtn:hover {
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+.submitBtn:active {
+  transform: scale(0.99);
+}
+
+.feedback {
+  min-height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  margin-top: var(--space-sm);
+}
+
+.feedback-login {
+  color: var(--secondary-fixed);
+}
+
+.feedback-register {
+  color: var(--tertiary-fixed);
+}
+
+.feedback-processing {
+  color: var(--primary-container);
+  animation: pulse 2s infinite;
+}
+
+.feedback-login-success {
+  color: var(--primary-container);
+  font-weight: 600;
+}
+
+.feedback-register-success {
+  color: var(--secondary-fixed);
+  font-weight: 600;
+}

@@ -1,0 +1,228 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: rgba(15, 20, 18, 0.85);
+  backdrop-filter: blur(24px);
+  padding-top: env(safe-area-inset-top, 0px);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.headerContent {
+  height: 3.5rem;
+  padding: 0 var(--margin-mobile);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+.bracket {
+  color: var(--primary-container);
+  font-size: 18px;
+  font-weight: bold;
+  user-select: none;
+}
+
+.logoText {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary-container);
+  letter-spacing: 0.05em;
+}
+
+.cursorBlink {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background-color: var(--primary-container);
+  margin-left: 2px;
+  animation: crt-pulse 1.2s infinite step-start;
+}
+
+.profileContainer {
+  position: relative;
+}
+
+.profileBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background-color: var(--surface-container-highest);
+  border: 1px solid var(--primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-container);
+  transition: all 0.2s;
+  user-select: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + var(--space-xs));
+  background-color: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  padding: var(--space-xs) 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--error);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  width: 100%;
+  border: none;
+  text-align: left;
+}
+
+.dropdownItem:hover {
+  background-color: var(--surface-container-highest);
+  color: var(--error-container);
+}
+
+.profileBtn:hover {
+  background-color: var(--primary-container);
+  color: var(--surface);
+}
+
+.profileIcon {
+  font-size: 18px;
+}
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background-color: rgba(15, 20, 18, 0.9);
+  backdrop-filter: blur(24px);
+  box-shadow: 0 -1px 12px rgba(0, 0, 0, 0.5);
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 4rem;
+  padding: 0 var(--gutter-mobile);
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  height: 44px;
+  color: var(--on-surface-variant);
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.navItem:hover {
+  color: var(--primary-container);
+}
+
+.navItemActive {
+  color: var(--primary-container);
+  background-color: var(--surface-container);
+}
+
+.navItemText {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+
+.navItemLogout {
+  color: var(--error);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.navItemLogout:hover {
+  color: var(--error-container);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  padding-top: 3.5rem;
+  padding-bottom: 5rem;
+  background-color: var(--surface);
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainNoNav {
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    top: 3.5rem;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 8rem;
+    border-right: 1px solid var(--outline-variant);
+    box-shadow: 1px 0 1.2rem rgba(0,0,0,0.5);
+  }
+
+  .navContent {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--space-md) 0;
+    gap: var(--space-md);
+    height: 100%;
+  }
+
+  .navItem {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .navItemLogout {
+    margin-top: auto;
+  }
+
+  .navItemLogout {
+    margin-top: auto;
+  }
+
+  .main {
+    padding-bottom: 0;
+    padding-left: 8rem;
+  }
+}

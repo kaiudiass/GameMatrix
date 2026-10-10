@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+:root {
+  --surface-container-highest: #313633;
+  --on-primary-container: #007128;
+  --on-secondary-fixed-variant: #00531e;
+  --surface-container-high: #262b29;
+  --error-container: #93000a;
+  --outline-variant: #3b4b3a;
+  --surface-container: #1c211e;
+  --inverse-on-surface: #2c322f;
+  --on-tertiary: #053900;
+  --on-tertiary-container: #107100;
+  --surface-bright: #353a38;
+  --secondary-fixed-dim: #6ade7d;
+  --error: #ffb4ab;
+  --on-surface-variant: #b9ccb5;
+  --on-tertiary-fixed: #022100;
+  --secondary-fixed: #86fb96;
+  --secondary: #6ade7d;
+  --tertiary-fixed: #79ff5b;
+  --tertiary-container: #3aff16;
+  --inverse-primary: #006e27;
+  --primary-fixed-dim: #00e55b;
+  --on-secondary-container: #00320f;
+  --primary-container: #00ff66;
+  --on-surface: #dfe4e0;
+  --on-error-container: #ffdad6;
+  --background: #0f1412;
+  --tertiary: #efffe3;
+  --surface-tint: #00e55b;
+  --surface-dim: #0f1412;
+  --surface-container-low: #181d1b;
+  --on-primary-fixed-variant: #00531b;
+  --surface: #0f1412;
+  --on-primary-fixed: #002107;
+  --inverse-surface: #dfe4e0;
+  --on-tertiary-fixed-variant: #095300;
+  --tertiary-fixed-dim: #2ae500;
+  --surface-variant: #313633;
+  --primary-fixed: #6bff83;
+  --outline: #849581;
+  --on-primary: #003911;
+  --on-secondary: #003912;
+  --on-secondary-fixed: #002108;
+  --on-background: #dfe4e0;
+  --surface-container-lowest: #0a0f0d;
+  --on-error: #690005;
+  --secondary-container: #2da54c;
+  --primary: #edffe8;
+
+  --gutter: 0.75rem;
+  --space-xl: 2rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --margin: 1.25rem;
+  --gutter-mobile: 0.5rem;
+  --space-md: 0.75rem;
+  --margin-mobile: 1rem;
+  --space-lg: 1.25rem;
+  
+  --radius: 1rem;
+}
+
+html,
+body {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--on-surface);
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  min-height: 100vh;
+}
+
+body {
+  overscroll-behavior: none;
+  min-height: max(884px, 100dvh);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.crt-overlay {
+  background: linear-gradient(rgba(15, 20, 18, 0) 50%, rgba(0, 0, 0, 0.35) 50%),
+    linear-gradient(90deg, rgba(0, 255, 102, 0.015), rgba(0, 0, 0, 0.01), rgba(0, 255, 102, 0.015));
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+@keyframes crt-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.animate-crt-pulse {
+  animation: crt-pulse 1.2s infinite step-start;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+::selection {
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
