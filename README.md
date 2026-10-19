@@ -1,16 +1,52 @@
-# React + Vite
+# 🕹️ Matrix - Game & API (Fullstack Docker)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Monorepo estruturado com o Frontend Web, Backend API em Node.js (Express + Sequelize) e Banco de Dados PostgreSQL, todos orquestrados via Docker Compose.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📁 Estrutura do Projeto
 
-## React Compiler
+```
+vovóMatrix/
+├── docker-compose.yml  # Orquestrador com PostgreSQL, matrix-api e matrix-web
+├── matrix-api/         # Backend (Express 5, Sequelize, PostgreSQL, Socket.io)
+│   └── Dockerfile
+└── matrix-web/         # Frontend (React 19, Vite, Socket.io-client)
+    └── Dockerfile
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 🐳 Como Executar com Docker (Recomendado)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Suba toda a infraestrutura (PostgreSQL, Backend API e Frontend Web) com um único comando na raiz:
+
+```bash
+docker compose up --build
+```
+
+- **Frontend Web**: [http://localhost:5173](http://localhost:5173)
+- **Backend API**: [http://localhost:3000](http://localhost:3000)
+- **Banco PostgreSQL**: `localhost:5432`
+
+> **Hot Reload ativo**: O volume `./matrix-api:/app` e `./matrix-web:/app` permite que qualquer alteração feita no seu editor reflita instantaneamente dentro dos containers.
+
+---
+
+## 🛠️ Comandos Úteis do Docker
+
+- **Rodar em background (modo detached)**:
+
+  ```bash
+  docker compose up -d
+  ```
+- **Ver logs em tempo real**:
+
+  ```bash
+  docker compose logs -f
+  ```
+- **Parar todos os containers**:
+
+  ```bash
+  docker compose down
+  ```

@@ -1,0 +1,458 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 42rem;
+  margin: var(--space-lg) auto auto auto;
+  padding: 0 var(--margin-mobile);
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin: 0 auto;
+  }
+}
+
+.statusBar {
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--surface-container-low);
+  color: var(--on-surface);
+}
+
+.statusInner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.statusDot {
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 999.9rem;
+  background-color: var(--primary-container);
+}
+
+.statusText {
+  font-size: 1.2rem;
+  color: var(--primary-container);
+  letter-spacing: 0.08em;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+}
+
+.peersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.peerCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  background-color: var(--surface-container);
+  color: var(--on-surface);
+  transition: background-color 0.2s;
+  border-radius: var(--radius);
+  gap: var(--space-md);
+}
+
+.peerCardBusy {
+  background-color: var(--surface-container-low);
+  opacity: 0.75;
+  user-select: none;
+}
+
+.peerInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-right: var(--space-xs);
+  gap: var(--space-xs);
+}
+
+.peerNameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.peerArrow {
+  color: var(--primary-container);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.peerHash {
+  color: var(--on-surface-variant);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.peerName {
+  font-size: 1.6rem;
+  color: var(--on-surface);
+  letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.peerNameBusy {
+  font-size: 1.6rem;
+  color: var(--on-surface-variant);
+  letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.peerStatus {
+  font-size: 1.1rem;
+  color: var(--primary-fixed-dim);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em;
+  padding-left: 1.6rem;
+  font-weight: 500;
+}
+
+.peerStatusBusy {
+  font-size: 1rem;
+  color: var(--outline);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em;
+  padding-left: 1.2rem;
+  font-weight: 500;
+}
+
+.btnInvite {
+  border-radius: var(--radius);
+  flex-shrink: 0;
+  padding: 0.4rem var(--space-sm);
+  background-color: var(--surface-container-high);
+  color: var(--primary-container);
+  font-size: 1.2rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+  user-select: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnInvite:hover {
+  background-color: var(--surface-container-highest);
+}
+
+.btnInvite:active {
+  background-color: var(--primary-container);
+  color: var(--surface);
+}
+
+.btnInvite:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.badgeBusy {
+  border-radius: var(--radius);
+  flex-shrink: 0;
+  padding: 0.4rem var(--space-sm);
+  background-color: var(--surface-container-lowest);
+  color: var(--outline);
+  font-size: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em;
+}
+
+/* Modais de Convite / Interação */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+  background-color: rgba(10, 15, 13, 0.85);
+  backdrop-filter: blur(0.25rem);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalBox {
+  width: 100%;
+  max-width: 28rem;
+  background-color: var(--surface-container-low);
+  box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.95);
+  padding: 1.8rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  gap: 1rem;
+  border-radius: var(--radius);
+  animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(0, 255, 102, 0.15);
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.glowBar {
+  height: 0.2rem;
+  width: 100%;
+  background-color: var(--primary-container);
+  box-shadow: 0 0 1rem var(--primary-container);
+  margin-bottom: 0.2rem;
+}
+
+.modalHeader {
+  font-size: 0.9rem;
+  color: var(--primary-container);
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+}
+
+.modalPulseIcon {
+  font-size: 3rem;
+  color: var(--primary-container);
+  filter: drop-shadow(0 0 0.8rem rgba(0, 255, 102, 0.6));
+  animation: pulseIcon 1.5s infinite alternate;
+}
+
+@keyframes pulseIcon {
+  0% { transform: scale(0.95); opacity: 0.75; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+
+.modalInviteIcon {
+  font-size: 3.2rem;
+  color: var(--primary-container);
+  filter: drop-shadow(0 0 0.8rem rgba(0, 255, 102, 0.6));
+}
+
+.modalErrorIcon {
+  font-size: 3rem;
+  color: var(--error);
+  filter: drop-shadow(0 0 0.8rem rgba(255, 68, 68, 0.6));
+}
+
+.modalSuccessIcon {
+  font-size: 3.2rem;
+  color: var(--primary-container);
+  filter: drop-shadow(0 0 1rem rgba(0, 255, 102, 0.8));
+}
+
+.modalText {
+  font-size: 1.15rem;
+  color: var(--on-surface);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+}
+
+.highlightPlayer {
+  color: var(--primary-container);
+  font-weight: 700;
+}
+
+.modalSubText {
+  font-size: 0.9rem;
+  color: var(--on-surface-variant);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+}
+
+.inviteMetaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: 0.2rem;
+  color: var(--on-surface-variant);
+  font-size: 0.95rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.inviteTimer {
+  color: var(--primary-container);
+  font-weight: 600;
+}
+
+.modalActions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.modalActionsDual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  width: 100%;
+  margin-top: 0.4rem;
+}
+
+.btnModalAccept {
+  border-radius: var(--radius);
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+  font-size: 1.1rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  font-weight: bold;
+  text-align: center;
+  transition: transform 0.15s, filter 0.15s;
+  box-shadow: 0 0 1.2rem rgba(0, 255, 102, 0.4);
+  cursor: pointer;
+}
+.btnModalAccept:active {
+  transform: scale(0.98);
+}
+
+.btnModalDecline {
+  border-radius: var(--radius);
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background-color: var(--surface-container);
+  color: var(--on-surface-variant);
+  font-size: 1.1rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btnModalDecline:hover {
+  background-color: var(--surface-container-high);
+  color: var(--error);
+}
+.btnModalDecline:active {
+  transform: scale(0.98);
+}
+
+.btnModalCancel {
+  border-radius: var(--radius);
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background-color: var(--surface-container);
+  color: var(--on-surface-variant);
+  font-size: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btnModalCancel:hover {
+  background-color: var(--surface-container-high);
+  color: var(--error);
+}
+.btnModalCancel:active {
+  transform: scale(0.98);
+}
+
+.btnModalClose {
+  border-radius: var(--radius);
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--surface-container-high);
+  color: var(--primary-container);
+  font-size: 1.05rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btnModalClose:hover {
+  background-color: var(--primary-container);
+  color: var(--surface);
+}
+.btnModalClose:active {
+  transform: scale(0.98);
+}
+
+.modalLoadingBar {
+  width: 100%;
+  height: 4px;
+  background-color: var(--surface-container-high);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.4rem;
+}
+
+.modalLoadingFill {
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-container);
+  box-shadow: 0 0 8px var(--primary-container);
+  animation: loadingAnim 1.2s infinite ease-in-out;
+}
+
+@keyframes loadingAnim {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+
+.logBox {
+  margin-top: var(--space-md);
+  font-size: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.logAccent {
+  color: var(--primary-container);
+  margin: 0;
+}
+
+.logNormal {
+  color: var(--on-surface-variant);
+  margin: 0;
+}

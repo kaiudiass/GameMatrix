@@ -1,0 +1,70 @@
+services:
+  # Banco de Dados PostgreSQL
+  matrix-db:
+    image: postgres:16-alpine
+    container_name: matrix-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: matrix_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d matrix_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Backend API (Express + Sequelize + Socket.io)
+  matrix-api:
+    build:
+      context: ./matrix-api
+      dockerfile: Dockerfile
+    container_name: matrix-api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      NODE_ENV: development
+      CLIENT_URL: http://localhost:5173
+      DATABASE_URL: postgresql://postgres:postgres@matrix-db:5432/matrix_db
+      DB_HOST: matrix-db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: matrix_db
+      JWT_SECRET: super_secret_matrix_jwt_token_key_change_me
+    volumes:
+      - ./matrix-api:/app
+      - /app/node_modules
+    depends_on:
+      matrix-db:
+        condition: service_healthy
+    command: npm run dev
+
+  # Frontend Web (React 19 + Vite + Socket.io-client)
+  matrix-web:
+    build:
+      context: ./matrix-web
+      dockerfile: Dockerfile
+    container_name: matrix-web
+    restart: always
+    ports:
+      - "5173:5173"
+    environment:
+      BACKEND_URL: http://matrix-api:3000
+      VITE_API_URL: /api
+      VITE_SOCKET_URL: /
+    volumes:
+      - ./matrix-web:/app
+      - /app/node_modules
+    depends_on:
+      - matrix-api
+    command: npm run dev
+
+volumes:
+  postgres_data:
